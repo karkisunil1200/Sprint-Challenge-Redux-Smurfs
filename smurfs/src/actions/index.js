@@ -23,10 +23,12 @@ export const getSmurfs = () => dispatch => {
 };
 
 export const addSmurfs = creds => dispatch => {
+  console.log(creds);
   dispatch({type: ADD_START});
   axios
     .post('http://localhost:3333/smurfs', creds)
     .then(res => {
+      console.log('from action', res, creds);
       dispatch({type: ADD_SUCCESS, payload: res.creds});
     })
     .catch(err => {

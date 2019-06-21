@@ -9,9 +9,9 @@ class SmurfList extends React.Component {
     console.log(this.props.smurfs);
     return (
       <div>
-        <h2>Smufs List</h2>
+        <h2>Smurfs List</h2>
         {this.props.smurfs.map(smurf => {
-          return <Smurf {...smurf} />;
+          return <Smurf smurf={smurf} />;
         })}
         <AddSmurf />
       </div>
@@ -20,6 +20,7 @@ class SmurfList extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.smurfs);
   return {
     smurfs: state.smurfs
   };

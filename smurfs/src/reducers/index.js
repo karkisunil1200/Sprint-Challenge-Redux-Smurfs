@@ -1,4 +1,11 @@
-import {FETCH_START, FETCH_SUCCESS, FETCH_ERROR} from '../actions';
+import {
+  FETCH_START,
+  FETCH_SUCCESS,
+  FETCH_ERROR,
+  ADD_START,
+  ADD_SUCCESS,
+  ADD_ERROR
+} from '../actions';
 
 /*
   Be sure to import in all of the action types from `../actions`
@@ -34,6 +41,28 @@ export const rootReducer = (state = initalState, action) => {
         fetchingSmurfs: false,
         err: action.payload
       };
+
+    case ADD_START:
+      return {
+        ...state,
+        addingSmurf: true,
+        error: null
+      };
+    case ADD_SUCCESS:
+      console.log(state.smurfs);
+      return {
+        ...state,
+        addingSmurf: false,
+        error: null,
+        smurfs: [...state.smurfs, action.payload]
+      };
+    case ADD_ERROR:
+      return {
+        ...state,
+        addingSmurf: false,
+        err: action.payload
+      };
+
     default:
       return state;
   }

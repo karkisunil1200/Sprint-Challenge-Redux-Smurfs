@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {addSmurfs} from '../../actions/index';
 
 class AddSmurf extends Component {
   state = {
@@ -10,14 +11,25 @@ class AddSmurf extends Component {
     }
   };
 
-  onChange = event => {
+  handleChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      creds: {
+        ...this.state.creds,
+        [event.target.name]: event.target.value
+      }
     });
   };
 
   addSmurf = event => {
     event.preventDefault();
+    this.props.addSmurfs(this.state.creds);
+    this.setState({
+      creds: {
+        name: '',
+        age: '',
+        height: ''
+      }
+    });
   };
   render() {
     return (
@@ -26,21 +38,21 @@ class AddSmurf extends Component {
           <input
             type='text'
             placeholder='Enter name!'
-            value={this.state.name}
+            value={this.state.creds.name}
             name='name'
             onChange={this.handleChange}
           />
           <input
             type='text'
-            placeholder='Enter name!'
-            value={this.state.age}
+            placeholder='Enter age!'
+            value={this.state.creds.age}
             name='age'
             onChange={this.handleChange}
           />
           <input
             type='text'
-            placeholder='Enter name!'
-            value={this.state.height}
+            placeholder='Enter height!'
+            value={this.state.creds.height}
             name='height'
             onChange={this.handleChange}
           />
@@ -56,4 +68,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default AddSmurf;
+export default connect(
+  mapStateToProps,
+  {addSmurfs}
+)(AddSmurf);

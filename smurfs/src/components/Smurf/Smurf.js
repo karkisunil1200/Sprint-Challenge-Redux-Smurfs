@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 class Smurf extends Component {
-  render(props) {
+  render() {
     return (
       <div>
-        <h2>{props.smurf.name}</h2>
+        <h2>{this.props.smurf}</h2>
       </div>
     );
   }
