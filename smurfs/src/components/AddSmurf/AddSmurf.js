@@ -4,32 +4,21 @@ import {addSmurfs} from '../../actions/index';
 
 class AddSmurf extends Component {
   state = {
-    creds: {
-      name: '',
-      age: '',
-      height: ''
-    }
+    name: '',
+    age: '',
+    height: ''
   };
 
   handleChange = event => {
     this.setState({
-      creds: {
-        ...this.state.creds,
-        [event.target.name]: event.target.value
-      }
+      ...this.state,
+      [event.target.name]: event.target.value
     });
   };
 
   addSmurf = event => {
     event.preventDefault();
-    this.props.addSmurfs(this.state.creds);
-    this.setState({
-      creds: {
-        name: '',
-        age: '',
-        height: ''
-      }
-    });
+    this.props.addSmurfs(this.state);
   };
   render() {
     return (
@@ -38,21 +27,21 @@ class AddSmurf extends Component {
           <input
             type='text'
             placeholder='Enter name!'
-            value={this.state.creds.name}
+            value={this.state.name}
             name='name'
             onChange={this.handleChange}
           />
           <input
             type='text'
             placeholder='Enter age!'
-            value={this.state.creds.age}
+            value={this.state.age}
             name='age'
             onChange={this.handleChange}
           />
           <input
             type='text'
             placeholder='Enter height!'
-            value={this.state.creds.height}
+            value={this.state.height}
             name='height'
             onChange={this.handleChange}
           />

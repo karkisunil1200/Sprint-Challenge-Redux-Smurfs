@@ -14,24 +14,25 @@ export const getSmurfs = () => dispatch => {
     .get('http://localhost:3333/smurfs')
     .then(res => {
       console.log('hello', res);
-      dispatch({type: FETCH_SUCCESS, payload: res.smurfs});
+      dispatch({type: FETCH_SUCCESS, payload: res.data});
     })
     .catch(err => {
       console.log(err);
-      dispatch({type: FETCH_ERROR, payload: err.msg});
+      dispatch({type: FETCH_ERROR, payload: err.data});
     });
 };
 
-export const addSmurfs = creds => dispatch => {
-  console.log(creds);
+export const addSmurfs = smurfs => dispatch => {
+  console.log(smurfs);
   dispatch({type: ADD_START});
   axios
-    .post('http://localhost:3333/smurfs', creds)
+    .post('http://localhost:3333/smurfs', smurfs)
     .then(res => {
-      console.log('from action', res, creds);
-      dispatch({type: ADD_SUCCESS, payload: res.creds});
+      console.log('from action', res.smurfs);
+      dispatch({type: ADD_SUCCESS, payload: res.data});
     })
     .catch(err => {
+      console.log(err);
       dispatch({type: ADD_ERROR, payload: err.msg});
     });
 };

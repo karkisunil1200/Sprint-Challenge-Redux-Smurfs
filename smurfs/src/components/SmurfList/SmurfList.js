@@ -5,6 +5,10 @@ import Smurf from '../Smurf/Smurf';
 import AddSmurf from '../AddSmurf/AddSmurf';
 
 class SmurfList extends React.Component {
+  componentDidMount() {
+    this.props.getSmurfs();
+  }
+
   render() {
     console.log(this.props.smurfs);
     return (
@@ -12,6 +16,7 @@ class SmurfList extends React.Component {
         <h2>Smurfs List</h2>
         {this.props.smurfs.map(smurf => {
           return <Smurf smurf={smurf} />;
+          console.log('This is smurfList', smurf);
         })}
         <AddSmurf />
       </div>

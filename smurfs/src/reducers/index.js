@@ -33,7 +33,7 @@ export const rootReducer = (state = initalState, action) => {
         ...state,
         fetchingSmurfs: false,
         error: null,
-        smurfs: [...state.smurfs, action.payload]
+        smurfs: action.payload
       };
     case FETCH_ERROR:
       return {
@@ -54,7 +54,7 @@ export const rootReducer = (state = initalState, action) => {
         ...state,
         addingSmurf: false,
         error: null,
-        smurfs: [...state.smurfs, action.payload]
+        smurfs: action.payload
       };
     case ADD_ERROR:
       return {
